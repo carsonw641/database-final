@@ -1,0 +1,24 @@
+.banner {
+    background-color: lightcyan;
+    display: flex;
+    height: 20vh;
+    justify-content: center;
+   
+    h1 {
+        margin: auto;
+    }
+
+    .account {
+        background-color: white;
+        cursor: pointer;
+        
+        margin: 10px;
+        border-radius: 30px;
+        
+        height: 45px;
+        width: 45px;
+        i {
+            font-size: 45px;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+<div *ngIf="data.username; else login">
+    <h1>Good afternoon {{data.username}}</h1>
+</div>
+<ng-template #login class="no-account">
+    <div class="no-account">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input matInput [(ngModel)]="usernameField" required>
+        </mat-form-field>
+
+        <button mat-raised-button (click)="userLogin()">Login</button>
+        <button mat-raised-button (click)="signUp()">Sign Up</button>
+    </div>
+</ng-template>

@@ -11,11 +11,19 @@ import { MatInputModule } from '@angular/material/input'
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
 import { ConfigService } from './services/config.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CreateItemComponent } from './components/create-item/create-item.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileDialogComponent
+    ProfileDialogComponent,
+    CreateItemComponent
   ],
   imports: [
     BrowserModule,
@@ -25,10 +33,16 @@ import { ConfigService } from './services/config.service';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatCheckboxModule
   ],
   entryComponents: [
-    ProfileDialogComponent
+    ProfileDialogComponent,
+    CreateItemComponent
   ],
   providers: [ ConfigService ],
   bootstrap: [AppComponent]

@@ -1,5 +1,29 @@
 <div class="banner">
+    <button *ngIf="currentUser" mat-raised-button [matMenuTriggerFor]="userDir" (click)="loadAccounts()">Gift Lists</button>
+    <mat-menu #userDir="matMenu">
+        <button mat-menu-item *ngFor="let user of users" (click)="viewList(user.email)">{{user.name}}</button>
+    </mat-menu>
     <h1>Databases Final Project</h1>
-
     <div class="account" (click)="viewProfile()"><i class="material-icons">person</i></div>
+</div>
+<div class="page-body">
+    <div class="items">
+        <div class="item-card" *ngFor="let gift of gifts; let i = index">
+            <div class="card-content">
+                <p>{{gift.itemName}}</p>
+                <p>Price: ${{gift.price}}</p>
+                <p>URL: {{gift.url}}</p>
+            </div>
+
+            <div class="actions" *ngIf="currentUser===currentList">
+                <i class="material-icons" (click)="editItem(i)">edit</i>
+                <i class="material-icons" (click)="deleteItem(i)">delete</i>
+            </div>
+            <div class="actions" *ngIf="currentUser!==currentList && gift.purchaserId===currentUser || gift.purchased===false">
+                <mat-checkbox class="purchase-box" [(ngModel)]="gift.purchased" (change)="purchaseItem(gift)">Purchase?</mat-checkbox>
+            </div>
+        </div>
+    </div>
+           
+    <div class="add-item" (click)="addItem()"><i class="material-icons">add</i></div>
 </div>

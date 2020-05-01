@@ -1,10 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ConfigService } from '../../services/config.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 export interface ProfileData {
-  username: string
-  password: string
+  name: string,
+  email: string
 }
 
 @Component({
@@ -15,26 +17,37 @@ export interface ProfileData {
 export class ProfileDialogComponent implements OnInit {
 
   usernameField: string = '';
+  emailField: string = '';
 
   constructor(
+    private _snackBar: MatSnackBar,
     private configService: ConfigService,
     public dialogRef: MatDialogRef<ProfileDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ProfileData) {}
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   ngOnInit(): void {
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
+  public signOut(): void {
+    this.dialogRef.close('');
   }
 
   public async userLogin(): Promise<void> {
-    let response: boolean = await this.configService.getProfile(this.usernameField);
-    console.log(`The response was: ${response}`);
+    if (this.emailField){
+      let response: boolean = await this.configService.getProfile(this.emailField);
+
+      if (response)
+        this.dialogRef.close(this.emailField);
+      else
+        this._snackBar.open("Account doesn't exist", "Cry a little")
+    }
   }
 
   public async signUp(): Promise<void> {
-    let response: string = await this.configService.createProfile(this.usernameField);
+    if (this.usernameField && this.emailField){
+      await this.configService.createProfile(this.usernameField, this.emailField);
+      this.dialogRef.close(this.emailField)
+    }
   }
 
 }

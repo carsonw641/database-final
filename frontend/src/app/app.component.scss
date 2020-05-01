@@ -8,17 +8,78 @@
         margin: auto;
     }
 
+    button {
+        align-self: center;
+        margin-left: 2rem;
+    }
+
     .account {
-        background-color: white;
+        background-color: lightpink;
         cursor: pointer;
         
-        margin: 10px;
+        margin: 2rem;
         border-radius: 30px;
-        
+
         height: 45px;
         width: 45px;
         i {
             font-size: 45px;
         }
+    }
+}
+
+.page-body {
+    background-color: lightgray;
+    position: absolute;
+    height: 80vh;
+    width: 100%;
+    
+    .add-item {
+        background-color: white;
+        border-radius: 60px;
+        margin: 10px;
+        cursor: pointer;
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        right: 2rem;
+        bottom: 2rem;
+        i { font-size: 60px; }
+
+    }
+
+    
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: auto;
+  width: 90%;  
+}
+
+.item-card {
+    background-color: white;
+    border-radius: 4px;
+    width: 45%;
+    overflow-wrap: break-word;
+    margin: 10px 0;
+    position: relative;
+    max-width: 45%;
+    .card-content {
+        width: 90%;
+        margin: auto;
+        margin-bottom: 40px;
+    }
+}
+
+.actions {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    i {
+        margin: 0 5px;
+        cursor: pointer;
     }
 }
